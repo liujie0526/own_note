@@ -25,7 +25,7 @@ class PoemPageHandler(tornado.web.RequestHandler):
         noun3 = self.get_argument('noun3')
 
 
-        vis(dbuser='nginx_log', dbpassword='nginx_log', dbhost='192.168.1.139', dbbame='nginx_log', dbdate1=noun1, dbdate2=noun2,
+        vis(dbuser='1', dbpassword='1', dbhost='192.168.1.139', dbbame='nginx_log', dbdate1=noun1, dbdate2=noun2,
             serverid=noun3, outfilename='/usr/local/nginx/html/temp2.html')
 
         time.sleep(3)

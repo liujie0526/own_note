@@ -155,4 +155,12 @@ vim /usr/local/php/etc/php.ini
 #Cannot create the configuration file.    报错
 wget 192.168.1.231/soft/zabbix.conf.php
 #按照相应配置修改文件
+
+#字体乱码解决方法
+mkdir -p /var/www/html/zabbix/fonts
+cd /var/www/html/zabbix/fonts
+mkdir bak
+mv * bak
+wget 192.168.1.231/soft/zabbix4/simkai.ttf 192.168.1.231/soft/zabbix4/DejaVuSans.ttf
 ```
+

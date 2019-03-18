@@ -7,7 +7,7 @@ OLD=`cat MARK1`
 NEW=`curl -s 'https://www.5atxt.com/0_1' |grep 'latest_chapter_url'| awk -F '"' '{print $4}'`
 URL="https://www.5atxt.com$NEW"
 
-ACCESS_TOKEN=`curl 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=wwe6753c349e5a217a&corpsecret=hPj-UgVbcnUHYXe6uOgUiYWZTKW0YDySwID8RGcCkvI' | awk -F\" '{print $10}'`
+ACCESS_TOKEN=`curl 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=???&corpsecret=???' | awk -F\" '{print $10}'`
 PURL="https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=$ACCESS_TOKEN"
 function body() {
     local int AppID=1000003

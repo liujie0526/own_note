@@ -7,7 +7,7 @@ OLD=`cat MARK`
 NEW=`curl -s 'www.jianlaixiaoshuo.com' |grep 'latest_chapter_url'| awk -F '"' '{print $4}'`
 URL="www.jianlaixiaoshuo.com$NEW"
 
-ACCESS_TOKEN=`curl 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=wwe6753c349e5a217a&corpsecret=pke7XKBl4F_iZzQ1yYBhILgsB9MG2vCM37UGZtuUlkQ' | awk -F\" '{print $10}'`
+ACCESS_TOKEN=`curl 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=???&corpsecret=???' | awk -F\" '{print $10}'`
 PURL="https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=$ACCESS_TOKEN"
 function body() {
     local int AppID=1000002

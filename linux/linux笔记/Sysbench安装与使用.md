@@ -1,4 +1,8 @@
-# Sysbench 1.0.16 安装与使用
+# Sysbench安装与使用
+
+### 环境说明
+centos 6.7 64位
+Sysbench 1.0.16 
 
 ### 安装
 

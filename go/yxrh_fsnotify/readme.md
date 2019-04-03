@@ -38,3 +38,12 @@ echo 'echo $@ | yxrh_fsnotify '>> /usr/bin/fsnotify
 fsnotify /tmp /home /data > log.file  & #后台使用
 ```
 
+* 日志相关
+
+默认将日志写在 `/var/log/fsnotify.log` 中。
+
+所以如果使用默认文件的话，需要使用root用户运行程序。
+
+同时，因为没有定期删除机制，需要手工将历史日志进行删除。
+
+但是因为生产中，需要实时监控，有报警就要及时响应并清理日志，所以日志文件在正常情况下不会很大。

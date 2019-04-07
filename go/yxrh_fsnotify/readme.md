@@ -5,7 +5,7 @@
 该工具源码需要golang语言支持，开发版本为
 ```
 go version go1.11.2 linux/amd64
-centos 6.7 x64
+centos 6.9 x64
 ```
 
 为了方便使用，已将所有源码进行了编译，可以直接在linux系统下使用。

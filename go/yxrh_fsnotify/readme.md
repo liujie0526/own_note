@@ -1,49 +1,62 @@
 ## 文件监控工具
 
-* 环境需求
+* 环境说明
 
 该工具源码需要golang语言支持，开发版本为
-
- `go version go1.11.2 linux/amd64`
-
-并需要如下库支持
-
-```go
-github.com/fsnotify/fsnotify
-github.com/wonderivan/logger
+```
+go version go1.11.2 linux/amd64
+centos 6.7 x64
 ```
 
-若无上述环境，可以直接使用编译后的文件。
+为了方便使用，已将所有源码进行了编译，可以直接在linux系统下使用。
 
-* 使用说明
+另：本工具建议结合微信企业号进行使用。或通过zabbix等监控工具进行联动。
 
-*以编译后的二进制文件为例*
+* 程序目录结构及说明
 
-```bash
-# 在命令行中，将需要监控的文件夹通过 "|" 传递给程序。程序会自动递归寻找子目录并对该目录下所有文件进行监控。
-echo /tmp | yxrh_fsnotify #监控单一目录
-echo /tmp /usr/loacl/nginx/conf /home | yxrh_fsnotify #监控多个目录
-可以参照 github.com/wonderivan/logger 的配置，对日志输出进行配置。或者直接使用shell的重定向功能进行日志记录，使用方法如下：
-echo /tmp /usr/loacl/nginx/conf /home | yxrh_fsnotify  > log.file # 打印日志
-nohup echo /tmp /usr/loacl/nginx/conf /home | yxrh_fsnotify  > log.file & #后台使用
+```shell
+yxrh_fsnotify
+├── conf
+│   └── config.ini.example //配置文件示例
+├── log
+│   └── fsnotify.log  //监控生成的日志文件，用于记录被监控目录的文件操作情况
+├── sbin
+│   ├── yxrh_fsnotify //主程序，用于监控指定目录的文件操作情况
+│   └── yxrh_sendmail //用于发送微信消息的程序，可以单独使用
+└── src //程序源码
+    ├── yxrh_fsnotify.go
+    └── yxrh_sendmail.go
 ```
 
-* 结合shell脚本使用
+* 安装说明
 
 ```bash
-mv yxrh_fsnotify /usr/bin
-chmod +x yxrh_fsnotify
-echo '#!/bin/bash' > /usr/bin/fsnotify
-echo 'echo $@ | yxrh_fsnotify '>> /usr/bin/fsnotify
-fsnotify /tmp /home /data > log.file  & #后台使用
+#以下操作需要使用root用户进行操作
+wget  https://raw.githubusercontent.com/fushisanlang/own_note/master/go/yxrh_fsnotify/yxrh_fsnotify.tar.gz -O /usr/local/yxrh_fsnotify.tar.gz
+tar zxvf /usr/local/yxrh_fsnotify.tar.gz
+cd /usr/local/yxrh_fsnotify/src/install
+sh install.sh
+```
+
+* 配置文件说明
+
+```bash
+[topicArr]        #配置头
+ipaddr = 192.168.1.1  #本机ip，用于在发送消息时区别主机
+corpid = xxx   #企业微信号的id
+corpsecret = xxxxxx  #企业微信号的secret
+appid = xxx #企业微信号中应用的appid
+dirname1 = /tmp/home #想要监控的目录的绝对路径
+dirname2 = /usr/local/sbin #第二个路径，理论支持若干路径，但是建议只监控几个比较外层的目录
+dirname3 = /usr/local/nginx/conf #不建议监控日志目录，因为经常写入的目录会不停的发送报警
 ```
 
 * 日志相关
 
-默认将日志写在 `/var/log/fsnotify.log` 中。
+日志写在 `/usr/local/yxrh_fsnotify/log/fsnotify.log` 中。
 
-所以如果使用默认文件的话，需要使用root用户运行程序。
-
-同时，因为没有定期删除机制，需要手工将历史日志进行删除。
+因为没有定期删除机制，需要手工将历史日志进行删除。
 
 但是因为生产中，需要实时监控，有报警就要及时响应并清理日志，所以日志文件在正常情况下不会很大。
+
+日志存在的意义在于，当报警过多时可以通过日志查看信息。因为微信的消息是通过互联网方式发送的，前后顺序可能会有颠倒，对问题溯源不是很友好。

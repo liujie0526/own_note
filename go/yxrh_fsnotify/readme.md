@@ -33,6 +33,7 @@ yxrh_fsnotify
 ```bash
 #以下操作需要使用root用户进行操作
 wget  https://raw.githubusercontent.com/fushisanlang/own_note/master/go/yxrh_fsnotify/yxrh_fsnotify.tar.gz -O /usr/local/yxrh_fsnotify.tar.gz
+cd /usr/local/
 tar zxvf /usr/local/yxrh_fsnotify.tar.gz
 cd /usr/local/yxrh_fsnotify/src/install
 sh install.sh

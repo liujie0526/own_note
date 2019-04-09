@@ -3,6 +3,10 @@
 #by https://github.com/fushisanlang/
 
 WD="/usr/local/yxrh_fsnotify/"
+
+if [[ ${2} = nosend ]]; then
+alias yxrh_fsnotify="yxrh_fsnotify_nosend"
+
 pidfile=${WD}pid.file
 start() {
     cd ${WD}

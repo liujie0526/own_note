@@ -52,6 +52,16 @@ dirname2 = /usr/local/sbin #第二个路径，理论支持若干路径，但是�
 dirname3 = /usr/local/nginx/conf #不建议监控日志目录，因为经常写入的目录会不停的发送报警
 ```
 
+* 使用方法
+
+```shell
+/etc/init.d/yxrh_fsnotify start #启动
+/etc/init.d/yxrh_fsnotify start nosend #以无微信报警方式启动
+/etc/init.d/yxrh_fsnotify stop #关闭
+/etc/init.d/yxrh_fsnotify restart #重新启动
+/etc/init.d/yxrh_fsnotify status #查看状态
+```
+
 * 日志相关
 
 日志写在 `/usr/local/yxrh_fsnotify/log/fsnotify.log` 中。

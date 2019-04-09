@@ -22,9 +22,11 @@ yxrh_fsnotify
 │   └── fsnotify.log  //监控生成的日志文件，用于记录被监控目录的文件操作情况
 ├── sbin
 │   ├── yxrh_fsnotify //主程序，用于监控指定目录的文件操作情况
+│   ├── yxrh_fsnotify_nosend //主程序，没有发送错误信息的功能
 │   └── yxrh_sendmail //用于发送微信消息的程序，可以单独使用
 └── src //程序源码
     ├── yxrh_fsnotify.go
+    ├── yxrh_fsnotify_nosend.go    
     └── yxrh_sendmail.go
 ```
 
@@ -71,4 +73,3 @@ dirname3 = /usr/local/nginx/conf #不建议监控日志目录，因为经常写�
 但是因为生产中，需要实时监控，有报警就要及时响应并清理日志，所以日志文件在正常情况下不会很大。
 
 日志存在的意义在于，当报警过多时可以通过日志查看信息。因为微信的消息是通过互联网方式发送的，前后顺序可能会有颠倒，对问题溯源不是很友好。
-

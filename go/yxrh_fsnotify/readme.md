@@ -39,6 +39,10 @@ cd /usr/local/
 tar zxvf /usr/local/yxrh_fsnotify.tar.gz
 cd /usr/local/yxrh_fsnotify/src/install
 sh install.sh
+
+#配置
+cd /usr/local/yxrh_fsnotify/conf
+mv config.ini.example config.ini
 ```
 
 * 配置文件说明

@@ -6,6 +6,7 @@ WD="/usr/local/yxrh_fsnotify/"
 
 if [[ ${2} = nosend ]]; then
 alias yxrh_fsnotify="yxrh_fsnotify_nosend"
+fi
 
 pidfile=${WD}pid.file
 start() {

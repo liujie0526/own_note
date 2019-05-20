@@ -327,7 +327,20 @@ vim  /etc/rc.d/rc.local #将nginx配置文件实时同步脚本和inotify优化�
 	echo 50000000 > /proc/sys/fs/inotify/max_user_watches
 	echo 50000000 > /proc/sys/fs/inotify/max_queued_events
 ```
-
+```
+cat /usr/bin/notify-rsync
+#!/bin/bash
+host2=192.168.1.190
+src=/usr/local/nginx/conf
+dst1=189-nginx-auto
+user1=bak
+/usr/bin/inotifywait -mrq --timefmt '%d/%m/%y %H:%M' --format '%T %w%f%e' -e modify,delete,create,attrib  $src \
+| while read files
+do
+    /usr/bin/rsync -vzrtopg --delete --progress --password-file=/etc/rsyncd.pass $src $user1@$host2::$dst1
+    echo "${files} was rsynced" >>/tmp/rsync.log 2>&1
+done
+```
 * 添加定时任务
 
 ```shell
